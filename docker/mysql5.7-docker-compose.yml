@@ -1,3 +1,6 @@
+# anything in <BRACKETS> should be modified
+# with its actual value
+
 version: "3.3"
 
 services:
@@ -13,7 +16,7 @@ services:
     ports:
       - "25060:3306"
     volumes:
-      - volume-name:/var/lib/mysql
+      - <VOLUME NAME>:/var/lib/mysql
 
 volumes:
-  volume-name:
+  <VOLUME NAME>:
