@@ -6,7 +6,7 @@ version: "3.3"
 services:
   db:
     platform: linux/x86_64 # for M1 macs
-    image: mysql:5.7
+    image: mysql:<VERSION> # (5.7|8)
     restart: always
     environment:
       MYSQL_DATABASE: "db"
