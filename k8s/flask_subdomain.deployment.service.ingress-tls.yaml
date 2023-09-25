@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-hello-world
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: flask-hello-world
+  template:
+    metadata:
+      labels:
+        name: flask-hello-world
+    spec:
+      containers:
+        - name: flask-hello-world
+          image: flask-hello-world:1.0.0
+          imagePullPolicy: Never
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-hello-world
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    name: flask-hello-world
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flask-hello-world
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: "traefik"
+  rules:
+    - host: SUBDOMAIN.k3s.DOMAIN
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: flask-hello-world
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - SUBDOMAIN.k3s.DOMAIN
+      secretName: SUBDOMAIN-k3s-DOMAIN-tls
