@@ -4,7 +4,7 @@
 version: "3.1"
 
 services:
-  stringdb:
+  database: # change service name if needed
     image: postgres:15.4
     restart: always
     environment:
@@ -12,6 +12,9 @@ services:
       - "POSTGRES_PASSWORD=password"
       - "POSTGRES_DB=mydatabase"
     volumes:
+      # ./initdb contains initialization scripts (e.g. setting up tables)
       - ./initdb:/docker-entrypoint-initdb.d
+      # ./FOLDER_TO_STORE_DATA will persist the database
+      - ./FOLDER_TO_STORE_DATA:/var/lib/postgresql/data
     ports:
       - 5432:5432
