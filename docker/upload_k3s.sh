@@ -5,6 +5,8 @@
 
 # usage:
 # * ./upload_k3s.sh <path to ssh key> <ssh username and host> <image:tag>
+# * user currently must be root
+# * can't override existing temp file if switching user
 # * must have a file called VERSION with the version number, e.g.
 #   $ cat VERSION
 #   0.1.2
