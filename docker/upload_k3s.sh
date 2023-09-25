@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# dependencies
+# - pv (pipeviewer)
+
 # usage:
 # * ./upload_k3s.sh <path to ssh key> <ssh username and host> <image:tag>
 # * must have a file called VERSION with the version number, e.g.

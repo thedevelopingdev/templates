@@ -8,9 +8,7 @@
 
 set -e # exit if any command fails
 
-SSH_KEY=$1
-SSH_DEST=$2
-image="flask-hello-world"
+image="YOUR_DESIRED_IMAGE_NAME"
 
 # list current docker images
 docker images "$image"
@@ -25,7 +23,3 @@ if [ $confirm != "y" ]; then
 fi
 
 docker buildx build --load --platform linux/amd64 -t "$image:$tag" .
-
-echo "Uploading to remote host ($SSH_DEST): $image:$tag"
-
-docker save "$image:$tag" | pv | ssh -i "$SSH_KEY" "$SSH_DEST" "cat >/tmp/temp.tar && k3s ctr images import /tmp/temp.tar --digests"
