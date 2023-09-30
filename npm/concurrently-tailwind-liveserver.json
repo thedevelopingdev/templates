@@ -1,0 +1,6 @@
+// npm install -D concurrently, live-server, tailwind-css
+{
+  "scripts": {
+    "dev": "npx concurrently \"npx tailwindcss -i ./input.css -o ./output.css --watch\" \"npx live-server\""
+  }
+}

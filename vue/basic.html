@@ -1,0 +1,20 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<head>
+  <!-- if using tailwind -->
+  <link href="./css/output.css" rel="stylesheet" />
+</head>
+
+<div id="app">{{ message }}</div>
+
+<script>
+  const { createApp } = Vue;
+
+  createApp({
+    data() {
+      return {
+        message: "Hello Vue!",
+      };
+    },
+  }).mount("#app");
+</script>
